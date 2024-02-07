@@ -8,10 +8,11 @@ from Register_Login.models import LoginDetails,CompanyDetails
 #---------------- models for zoho modules--------------------
 # TINTO -----ITEM ----START
 
+
 class Unit(models.Model):
- 
     unit_name=models.CharField(max_length=255)
     company=models.ForeignKey(CompanyDetails,on_delete=models.CASCADE)
+
 
 
 class Company_Payment_Term(models.Model):
@@ -61,9 +62,11 @@ class Items(models.Model):
     company=models.ForeignKey(CompanyDetails,on_delete=models.CASCADE)
     login_details=models.ForeignKey(LoginDetails,on_delete=models.CASCADE)
 
-    type=models.CharField(max_length=255,blank=True,null=True)
+    type=models.CharField(max_length=255,blank=True,null=True,)
 
-    track_inventory=models.IntegerField(blank=True,null=True)
+    track_inventory=models.IntegerField(blank=True,null=True)  
+
+
 
 class Item_Transaction_History(models.Model):
     company=models.ForeignKey(CompanyDetails,on_delete=models.CASCADE)
@@ -343,5 +346,8 @@ class CustomerHistory(models.Model):
 
     action = models.CharField(max_length=220,null=True,blank=True)
     date = models.DateField(auto_now_add=True, null=True, blank=True)
+  
+  
+
 
     

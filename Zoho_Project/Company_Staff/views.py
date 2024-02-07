@@ -641,3 +641,31 @@ def company_gsttype_change(request):
     
 
 # -------------------------------Zoho Modules section--------------------------------
+def ewaybill_listpage(request):
+    if 'login_id' in request.session:
+        log_id = request.session['login_id']
+        if 'login_id' not in request.session:
+            return redirect('/')
+    log_details= LoginDetails.objects.get(id=log_id)
+    if log_details.user_type == 'Staff':
+        dash_details = StaffDetails.objects.get(login_details=log_details)
+        emp=EwayBill.objects.filter(company=dash_details.company)
+        allmodules= ZohoModules.objects.get(company=dash_details.company,status='New')
+        content = {
+                'details': dash_details,
+                'emp':emp,
+                'allmodules': allmodules,
+                'log_id':log_details
+        }
+        return render(request,'zohomodules/employe_loan/employee_loan_list.html',content)
+    if log_details.user_type == 'Company':
+        dash_details = CompanyDetails.objects.get(login_details=log_details)
+        emp=EwayBill.objects.filter(company=dash_details)
+        allmodules= ZohoModules.objects.get(company=dash_details,status='New')
+        content = {
+                'details': dash_details,
+                'emp':emp,
+                'allmodules': allmodules,
+                'log_id':log_details
+        }
+        return render(request,'zohomodules/employe_loan/ewaybill_listpage.html',content)

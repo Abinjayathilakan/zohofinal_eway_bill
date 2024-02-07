@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'Zoho_Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Zoho_database',
+        'NAME': 'Zoho_database_Final',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
